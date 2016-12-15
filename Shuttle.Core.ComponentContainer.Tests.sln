@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shuttle.Core.ComponentContainer.Tests", "Shuttle.Core.ComponentContainer.Tests\Shuttle.Core.ComponentContainer.Tests.csproj", "{B147FAB0-9E18-4FF3-8D45-235E34A0ABE1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9B4C98F4-EB28-4FA5-BC40-39121F0634C5}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{9DDFF389-056C-4DC5-B622-25414A270F24}"
+	ProjectSection(SolutionItems) = preProject
+		.build\package.msbuild = .build\package.msbuild
+		.build\package.nuspec = .build\package.nuspec
+		.build\Shuttle.Core.MSBuild.dll = .build\Shuttle.Core.MSBuild.dll
+		.build\Shuttle.Core.MSBuild.targets = .build\Shuttle.Core.MSBuild.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B147FAB0-9E18-4FF3-8D45-235E34A0ABE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B147FAB0-9E18-4FF3-8D45-235E34A0ABE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B147FAB0-9E18-4FF3-8D45-235E34A0ABE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B147FAB0-9E18-4FF3-8D45-235E34A0ABE1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
