@@ -29,7 +29,8 @@ namespace Shuttle.Core.ComponentContainer.Tests
             var singleton = resolver.Resolve<IService>();
 
             Assert.IsNotNull(singleton, "The requested IService implementation may not be null.");
-            Assert.AreSame(singleton, resolver.Resolve<IService>(), "Multiple calls to resolve IService should return the same instance.");
+            Assert.AreSame(singleton, resolver.Resolve<IService>(),
+                "Multiple calls to resolve IService should return the same instance.");
         }
 
         protected void ResolveTransient(IComponentResolver resolver)
@@ -39,56 +40,21 @@ namespace Shuttle.Core.ComponentContainer.Tests
             var transient = resolver.Resolve<IService>();
 
             Assert.IsNotNull(transient, "The requested IService implementation may not be null.");
-            Assert.AreNotSame(transient, resolver.Resolve<IService>(), "Multiple calls to resolve IService should return unique instances.");
+            Assert.AreNotSame(transient, resolver.Resolve<IService>(),
+                "Multiple calls to resolve IService should return unique instances.");
         }
 
-        protected void RegisterNamedSingleton(IComponentRegistry registry)
-        {
-            Guard.AgainstNull(registry, "registry");
-
-            registry.Register<IServiceDependency, ServiceDependency>(Lifestyle.Singleton);
-            registry.Register<IService, Service>("key-1", Lifestyle.Singleton);
-        }
-
-        protected void RegisterNamedTransient(IComponentRegistry registry)
+        protected void RegisterCollection(IComponentRegistry registry)
         {
             Guard.AgainstNull(registry, "registry");
 
             registry.Register<IServiceDependency, ServiceDependency>(Lifestyle.Transient);
-            registry.Register<IService, Service>("key-1", Lifestyle.Transient);
+
+            registry.RegisterCollection(typeof (IService), new[] {typeof (Service1), typeof (Service2), typeof (Service3)},
+                Lifestyle.Singleton);
         }
 
-        protected void ResolveNamedSingleton(IComponentResolver resolver)
-        {
-            Guard.AgainstNull(resolver, "resolver");
-
-            var singleton = resolver.Resolve<IService>("key-1");
-
-            Assert.IsNotNull(singleton, "The requested IService implementation may not be null.");
-            Assert.AreSame(singleton, resolver.Resolve<IService>("key-1"), "Multiple calls to resolve IService should return the same instance.");
-        }
-
-        protected void ResolveNamedTransient(IComponentResolver resolver)
-        {
-            Guard.AgainstNull(resolver, "resolver");
-
-            var transient = resolver.Resolve<IService>("key-1");
-
-            Assert.IsNotNull(transient, "The requested IService implementation may not be null.");
-            Assert.AreNotSame(transient, resolver.Resolve<IService>("key-1"), "Multiple calls to resolve IService should return unique instances.");
-        }
-
-        protected void RegisterMultipleInstances(IComponentRegistry registry)
-        {
-            Guard.AgainstNull(registry, "registry");
-
-            registry.Register<IServiceDependency, ServiceDependency>(Lifestyle.Transient);
-            registry.Register<IService, Service>("key-1", Lifestyle.Singleton);
-            registry.Register<IService, Service>("key-2", Lifestyle.Singleton);
-            registry.Register<IService, Service>("key-3", Lifestyle.Singleton);
-        }
-
-        protected void ResolveMultipleInstances(IComponentResolver resolver)
+        protected void ResolveCollection(IComponentResolver resolver)
         {
             Guard.AgainstNull(resolver, "resolver");
 
