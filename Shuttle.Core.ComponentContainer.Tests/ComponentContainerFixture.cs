@@ -10,16 +10,22 @@ namespace Shuttle.Core.ComponentContainer.Tests
         {
             Guard.AgainstNull(registry, "registry");
 
-            registry.Register<IServiceDependency, ServiceDependency>(Lifestyle.Singleton);
-            registry.Register<IService, Service>(Lifestyle.Singleton);
+            Assert.IsFalse(registry.IsRegistered<IServiceDependency>());
+			Assert.IsFalse(registry.IsRegistered<IService>());
+
+            Assert.IsTrue(registry.Register<IServiceDependency, ServiceDependency>(Lifestyle.Singleton).IsRegistered<IServiceDependency>());
+			Assert.IsTrue(registry.Register<IService, Service>(Lifestyle.Singleton).IsRegistered<IService>());
         }
 
         protected void RegisterTransient(IComponentRegistry registry)
         {
             Guard.AgainstNull(registry, "registry");
 
-            registry.Register<IServiceDependency, ServiceDependency>(Lifestyle.Transient);
-            registry.Register<IService, Service>(Lifestyle.Transient);
+            Assert.IsFalse(registry.IsRegistered<IServiceDependency>());
+            Assert.IsFalse(registry.IsRegistered<IService>());
+
+            Assert.IsTrue(registry.Register<IServiceDependency, ServiceDependency>(Lifestyle.Transient).IsRegistered<IServiceDependency>());
+            Assert.IsTrue(registry.Register<IService, Service>(Lifestyle.Transient).IsRegistered<IService>());
         }
 
         protected void ResolveSingleton(IComponentResolver resolver)
@@ -48,10 +54,12 @@ namespace Shuttle.Core.ComponentContainer.Tests
         {
             Guard.AgainstNull(registry, "registry");
 
-            registry.Register<IServiceDependency, ServiceDependency>(Lifestyle.Transient);
+			Assert.IsFalse(registry.IsRegistered<IServiceDependency>());
+			Assert.IsFalse(registry.IsRegistered(typeof(IService)));
 
-            registry.RegisterCollection(typeof (IService), new[] {typeof (Service1), typeof (Service2), typeof (Service3)},
-                Lifestyle.Singleton);
+			Assert.IsTrue(registry.Register<IServiceDependency, ServiceDependency>(Lifestyle.Transient).IsRegistered<IServiceDependency>());
+            Assert.IsTrue(registry.RegisterCollection(typeof (IService), new[] {typeof (Service1), typeof (Service2), typeof (Service3)},
+                Lifestyle.Singleton).IsRegistered(typeof(IService)));
         }
 
         protected void ResolveCollection(IComponentResolver resolver)
