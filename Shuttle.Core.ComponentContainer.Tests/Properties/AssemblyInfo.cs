@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 #endif
 
 #if NET451FULL
-[assembly: AssemblyTitle("Shuttle.Core.ComponentContainer.Tests for .NET Framework 4.5.l")]
+[assembly: AssemblyTitle("Shuttle.Core.ComponentContainer.Tests for .NET Framework 4.5.1")]
 #endif
 
 #if NET452FULL
@@ -29,11 +29,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Shuttle.Core.ComponentContainer.Tests for .NET Framework 4.6.2")]
 #endif
 
-[assembly: AssemblyVersion("8.0.1.0")]
+[assembly: AssemblyVersion("8.0.2.0")]
 [assembly: AssemblyCopyright("Copyright © Eben Roux 2017")]
-[assembly: AssemblyProduct("Shuttle.Core")]
+[assembly: AssemblyProduct("Shuttle")]
 [assembly: AssemblyCompany("Shuttle")]
 [assembly: AssemblyConfiguration("Release")]
-[assembly: AssemblyInformationalVersion("8.0.1")]
+[assembly: AssemblyInformationalVersion("8.0.2")]
 [assembly: ComVisible(false)]
-
